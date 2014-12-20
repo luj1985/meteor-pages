@@ -691,7 +691,7 @@
   setInfiniteTrigger: ->
     $(window).scroll (_.throttle ->
       t = @infiniteTrigger
-      oh = document.body.offsetHeight
+      oh = document.body.scrollHeight;
       if t > 1
         l = oh - t
       else if t > 0
