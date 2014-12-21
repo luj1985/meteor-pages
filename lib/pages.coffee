@@ -55,12 +55,9 @@
       n = sub.get "nPublishedPages"
       return n  if n?
 
-      n = Math.ceil @Collection.find(
-        $and: [
-          sub.get("filters"),
-          sub.get("realFilters") or {}
-        ]
-      ).count() / (sub.get "perPage")
+      filters = sub.get("filters")
+      filters = $and: [ sub.get("filters"), sub.get("realFilters") ] if sub.get("realFilters")
+      n = Math.ceil @Collection.find(filters).count() / (sub.get "perPage")
       n or 1
     
     "Set": (k, v, sub) ->
