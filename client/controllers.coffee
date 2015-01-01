@@ -51,6 +51,8 @@ Template._pagesPage.helpers
     for i, k in p
       p[k]['_t'] = @itemTemplate
     p
+  loadingTemplate: ->
+    @sess "loadingTemplate"
   item: ->
     Template[@_t]
 

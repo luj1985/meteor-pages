@@ -21,6 +21,7 @@
     routerTemplate: [true, String, "pages"]
     routerLayout: [true, Match.Optional(String), undefined]
     sort: [true, Object, {}]
+    loadingTemplate : [true, Match.Optional(String), undefined]
     
     # Unavailable to the client after initialization
     
@@ -448,7 +449,7 @@
       pagesData: @
       pagesNav: Template[@id + @navTemplate]
       pages: Template[@id + @pageTemplate]
-  
+    @sess "loadingTemplate", @loadingTemplate
   # Get the number of pages from the server
       
   countPages: _.throttle ->

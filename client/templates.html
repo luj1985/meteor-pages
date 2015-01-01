@@ -1,12 +1,13 @@
 <template name="pages">
 </template>
+
 <template name="pagesNav">
 </template>
+
 <template name="_pagesLoading">
-  <div class="pagesLoadingDefaultCont">
-    <div class="pagesLoadingDefault"><img src="/packages/alethes_pages/public/loader.gif"/></div>
-  </div>
+  Loading... 
 </template>
+
 <template name="_pagesPageCont">
   {{#if divWrapper pagesData}}
     <div class="{{divWrapper pagesData}}">
@@ -25,6 +26,7 @@
   {{/if}}
   {{/if}}
 </template>
+
 <template name="_pagesTable">
   <table class="{{class}}">
     <thead>
@@ -39,6 +41,7 @@
     </tbody>
   </table>
 </template>
+
 <template name="_pagesTableItem">
   <tr>
     {{#each attrs ..}}
@@ -46,18 +49,24 @@
     {{/each}}
   </tr>
 </template>
+
 <template name="_pagesPage">
-  <!-- {{#if ready pagesData}}
-  {{else}}
-    {{> _pagesLoading}}
-  {{/if}} -->
   {{#each items}}
     {{> item}}
   {{/each}}
+  {{#unless ready pagesData}}
+    {{#if loadingTemplate pagesData }}
+      {{> Template.dynamic template=loadingTemplate data=pagesData}}
+    {{else}}
+      {{> _pagesLoading}}
+    {{/if}}
+  {{/unless}}
 </template>
+
 <template name="_pagesNavCont">
   {{> _pagesNav pagesData}}
 </template>
+
 <template name="_pagesNav">
   {{#if show}}
     <div style="text-align:center" data-pages="{{name}}" class="pagination-cont">

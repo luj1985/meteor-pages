@@ -68,7 +68,6 @@ Package.onTest(function(api){
     api.addFiles([
         "client/templates.html",
         "client/controllers.coffee",
-        "client/main.css",
-        "public/loader.gif"
+        "client/main.css"
     ], "client");
 });
