@@ -5,15 +5,16 @@
 </template>
 
 <template name="_pagesLoading">
-  Loading... 
+Loading... 
 </template>
 
 <template name="_pagesPageCont">
-  {{#if divWrapper pagesData}}
-    <div class="{{divWrapper pagesData}}">
-      {{> _pagesPage pagesData}}
-    </div>
-  {{else}}{{#if table pagesData}}
+{{#if divWrapper pagesData}}
+  <div class="{{divWrapper pagesData}}">
+    {{> _pagesPage pagesData}}
+  </div>
+{{else}}
+  {{#if table pagesData}}
     {{#if tableWrapper pagesData}}
       <div class="{{tableWrapper pagesData}}">
         {{> _pagesTable pagesData}}
@@ -22,66 +23,67 @@
         {{> _pagesTable pagesData}}
     {{/if}}
   {{else}}
-  {{> _pagesPage pagesData}}
+    {{> _pagesPage pagesData}}
   {{/if}}
-  {{/if}}
+{{/if}}
 </template>
 
 <template name="_pagesTable">
-  <table class="{{class}}">
-    <thead>
-      <tr>
-        {{#each header}}
-          <th>{{value}}</th>
-        {{/each}}
-      </tr>
-    </thead>
-    <tbody>
-      {{> _pagesPage}}
-    </tbody>
-  </table>
+<table class="{{class}}">
+  <thead>
+    <tr>
+      {{#each header}}
+        <th>{{value}}</th>
+      {{/each}}
+    </tr>
+  </thead>
+  <tbody>
+    {{> _pagesPage}}
+  </tbody>
+</table>
 </template>
 
 <template name="_pagesTableItem">
-  <tr>
-    {{#each attrs ..}}
-      <td>{{value}}</td>
-    {{/each}}
-  </tr>
+<tr>
+  {{#each attrs ..}}
+    <td>{{value}}</td>
+  {{/each}}
+</tr>
 </template>
 
 <template name="_pagesPage">
-  {{#each items}}
-    {{> item}}
-  {{/each}}
-  {{#unless ready pagesData}}
-    {{#if loadingTemplate pagesData }}
-      {{> Template.dynamic template=loadingTemplate data=pagesData}}
-    {{else}}
-      {{> _pagesLoading}}
-    {{/if}}
-  {{/unless}}
+{{#each items}}
+  {{> item}}
+{{/each}}
+{{#unless ready pagesData}}
+  {{#if loadingTemplate pagesData }}
+    {{> Template.dynamic template=loadingTemplate data=pagesData}}
+  {{else}}
+    {{> _pagesLoading}}
+  {{/if}}
+{{/unless}}
 </template>
 
 <template name="_pagesNavCont">
-  {{> _pagesNav pagesData}}
+{{> _pagesNav pagesData}}
 </template>
 
 <template name="_pagesNav">
-  {{#if show}}
-    <div style="text-align:center" data-pages="{{name}}" class="pagination-cont">
-      <ul class="pagination">
-      {{#each paginationNeighbors}}
-        <li class="{{active}} {{disabled}}">
-          <a href="{{link}}">{{p}}</a>
-        </li>
-      {{/each}}
-      </ul>
-    </div>
-  {{/if}}
-</template>
-<template name="_pagesItemDefault">
-  <div class="pagesItemDefault">{{#each properties}}
-    <div><i>{{name}}</i>: {{value}}</div>{{/each}}
+{{#if show}}
+  <div style="text-align:center" data-pages="{{name}}" class="pagination-cont">
+    <ul class="pagination">
+    {{#each paginationNeighbors}}
+      <li class="{{active}} {{disabled}}">
+        <a href="{{link}}">{{p}}</a>
+      </li>
+    {{/each}}
+    </ul>
   </div>
+{{/if}}
+</template>
+
+<template name="_pagesItemDefault">
+<div class="pagesItemDefault">{{#each properties}}
+  <div><i>{{name}}</i>: {{value}}</div>{{/each}}
+</div>
 </template>
